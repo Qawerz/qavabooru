@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Пост №{{ post.id }}</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content -%}
     <h1>{{ post.title }}</h1>
     <img src={{post.image}}  width="450px"></img>
     <ul>
@@ -11,5 +7,4 @@
                 <li><a href="/posts/?tags={{item}}">{{item}}</a></li>
             {%- endfor %}
     </ul>
-</body>
-</html>
+{%- endblock %}

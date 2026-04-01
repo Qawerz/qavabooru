@@ -1,4 +1,5 @@
 from typing import Optional
+import operator as op 
 
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.staticfiles import StaticFiles
@@ -55,26 +56,58 @@ posts_db = [
 @app.get("/")
 @app.get("/posts")
 async def get_posts(request: Request, tags: Optional[str] = None):
-    print(tags)
     if tags:
+        print(f"{tags=}")
+        pos_tags = list(set([tag for tag in tags.strip().split(" ") if not tag.startswith("-")]))
+        neg_tags = [tag[1:] for tag in tags.split(" ") if tag.startswith("-")]
+        for t in pos_tags:
+            print(type(t))
+        print(f"{pos_tags=}\n{neg_tags=}")
         filtered = []
-        for item in posts_db:
-            if tags in item["tags"]:
+        for item in posts_db: # Проходимся по всему массиву
+            filter_flag = True # Задаем, что пост проходит по фильтру
+            for tag in pos_tags: # Проходимся по каждому тегу запроса
+                if tag not in item["tags"].split(" "): #
+                    filter_flag = False
+
+            if filter_flag:
                 filtered.append(item)
+
+        for item in filtered:
+            for tag in neg_tags:
+                if tag in item["tags"]:
+                    filtered.remove(item)
+
         return templates.TemplateResponse(request, name="posts.html", context={"posts": filtered})
-    
+
     return templates.TemplateResponse(request, name="posts.html", context={"posts": posts_db})
 
 @app.get("/posts.json")
 async def get_posts(request: Request, tags: Optional[str] = None):
     if tags:
+        print(f"{tags=}")
+        pos_tags = [tag for tag in tags.split(" ") if (not tag.startswith("-")) ]
+        neg_tags = [tag[1:] for tag in tags.split(" ") if tag.startswith("-")]
+        print(f"{pos_tags=}\n{neg_tags=}")
         filtered = []
-        for item in posts_db:
-            if tags in item["tags"]:
+        for item in posts_db: # Проходимся по всему массиву
+            filter_flag = True # Задаем, что пост проходит по фильтру
+            for tag in pos_tags: # Проходимся по каждому тегу запроса
+                if tag not in item["tags"].split(" "): #
+                    filter_flag = False
+
+            if filter_flag:
                 filtered.append(item)
+
+        for item in filtered:
+            for tag in neg_tags:
+                if tag in item["tags"]:
+                    filtered.remove(item)
+
         return {"posts": filtered}
 
     return {"posts": posts_db}
+
 
 @app.get("/posts/{post_msg}")
 async def get_posts_by_id(request: Request, post_msg: str):
