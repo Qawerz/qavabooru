@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Пост №{{ post.id }}</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <img src={{post.image}}  width="450px"></img>
+    <ul>
+            {% for item in post.tags.split(" ") -%}
+                <li><a href="/posts/?tags={{item}}">{{item}}</a></li>
+            {%- endfor %}
+    </ul>
+</body>
+</html>
