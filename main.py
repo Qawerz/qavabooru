@@ -55,16 +55,20 @@ posts_db = [
 ]
 @app.get("/")
 @app.get("/posts")
-async def get_posts(request: Request, tags: Optional[str] = None):
+async def get_posts(request: Request, tags: Optional[str] = None, page: Optional[int] = 1):
+    posts_on_page = 3
+    pagintaion=[posts_on_page*page-posts_on_page, posts_on_page*page]
+    
     if tags:
         print(f"{tags=}")
+        
         pos_tags = list(set([tag for tag in tags.strip().split(" ") if not tag.startswith("-")]))
         neg_tags = [tag[1:] for tag in tags.split(" ") if tag.startswith("-")]
         for t in pos_tags:
             print(type(t))
         print(f"{pos_tags=}\n{neg_tags=}")
         filtered = []
-        for item in posts_db: # Проходимся по всему массиву
+        for item in posts_db[pagintaion[0]:pagintaion[1]]: # Проходимся по всему массиву
             filter_flag = True # Задаем, что пост проходит по фильтру
             for tag in pos_tags: # Проходимся по каждому тегу запроса
                 if tag not in item["tags"].split(" "): #
@@ -80,7 +84,7 @@ async def get_posts(request: Request, tags: Optional[str] = None):
 
         return templates.TemplateResponse(request, name="posts.html", context={"posts": filtered})
 
-    return templates.TemplateResponse(request, name="posts.html", context={"posts": posts_db})
+    return templates.TemplateResponse(request, name="posts.html", context={"posts": posts_db[pagintaion[0]:pagintaion[1]]})
 
 @app.get("/posts.json")
 async def get_posts(request: Request, tags: Optional[str] = None):
