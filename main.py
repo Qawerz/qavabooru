@@ -38,12 +38,24 @@ posts_db = [
         "created_at": "2023-10-02 15:30:00",
         "image": "http://127.0.0.1:8000/static/img/3.png",
         "tags":"girl blask_shirt skirt short_hair red forest foggy school_uniform",
+    },
+    {
+        "id": 4,
+        "title": "1 girl,frog hat,gray hair,atmosphere background,cyan eyes,white shirt,portrait,aesthetic,hipster clothes,",
+        "image": "http://127.0.0.1:8000/static/img/4.jpg",
+        "tags":"1_girl frog_hat gray_hair atmosphere_background cyan_eyes white_shirt portrait aesthetic hipster_clothes"
+    },
+    {
+        "id": 5,
+        "title": "02111-428668394-1 girl,dress with a flower pattern,rim light,chromatic aberation,(rough sketch_1.2),gradient hair,blue hair tone,pink hair tone,.jpg",
+        "image": "http://127.0.0.1:8000/static/img/5.jpg",
+        "tags":"1_girl dress_with_a_flower_pattern rim_light chromatic_aberation (rough_sketch_1.2) gradient_hair blue_hair_tone pink_hair_tone"
     }
 ]
 @app.get("/")
 @app.get("/posts")
 async def get_posts(request: Request, tags: Optional[str] = None):
-    # print(tags)
+    print(tags)
     if tags:
         filtered = []
         for item in posts_db:

@@ -6,10 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
+    <div style="display: flex;">
         {% for item in posts -%}
             <div style="display: flex; flex-direction: column; padding: 0.5rem; border: 1px solid #ccc; width: 215px; height: 180px; object-fit: contain;" >
-                <img src="{{item.image}}" style="object-fit: contain;" alt="" >
+                <img src="{{item.image}}" style="object-fit: contain;" height="150px" width="100%" alt="" >
                 <a href="/posts/{{item.id}}">{{item.title}}</a>
             </div>
         {%- endfor %}
