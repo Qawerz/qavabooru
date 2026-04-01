@@ -1,11 +1,22 @@
 
 {% extends "base.html" %}
-{% block content -%}
+{% block aside -%}
+    <div>
+        <ul>
+            {% for item in grouped_tags[:25] -%}
+            <li><a href="/posts/?tags={{item}}">{{item}}</a></li>
+            {%- endfor %}
+        </ul>
+
+    </div>
+{%- endblock %}
+
+{% block main -%}
     <div style="display: flex;">
         {% for item in posts -%}
             <div style="display: flex; flex-direction: column; padding: 0.5rem; border: 1px solid #ccc; width: 215px; height: 180px; object-fit: contain;" >
                 <img src="{{item.image}}" style="object-fit: contain;" height="150px" width="100%" alt="" >
-                <a href="/posts/{{item.id}}">{{item.title}}</a>
+                <a href="/posts/{{item.id}}">open</a>
             </div>
         {%- endfor %}
     </div>

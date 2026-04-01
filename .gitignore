@@ -13,3 +13,8 @@ wheels/
 # Added by cargo
 
 /target
+utils/
+.env
+posts/
+
+**/**.db

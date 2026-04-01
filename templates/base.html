@@ -5,17 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body >
     <header>
         <h1>Qavabooru</h1>
     </header>
     <nav>
 
     </nav>
+    <div style="display: flex;">
+
     <aside>
-        {% block content -%}
+        {% block aside -%}
     
         {%- endblock %}
     </aside>
+
+    <main>
+        {% block main -%}
+    
+        {%- endblock %}
+    </main>
+    </div>
+
 </body>
 </html>
