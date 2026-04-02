@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block main -%}
+    <div>
+        <ul>
+            {% for item in tags -%}
+            <li><a href="/posts/?tags={{item}}">{{item}}</a></li>
+            {%- endfor %}
+        </ul>
+
+    </div>
+{%- endblock %}

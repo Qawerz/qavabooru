@@ -18,3 +18,6 @@ utils/
 posts/
 
 **/**.db
+
+db.json
+static/img/txt2img/

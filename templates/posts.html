@@ -12,12 +12,54 @@
 {%- endblock %}
 
 {% block main -%}
-    <div style="display: flex;">
+    <div class="grid-items">
         {% for item in posts -%}
-            <div style="display: flex; flex-direction: column; padding: 0.5rem; border: 1px solid #ccc; width: 215px; height: 180px; object-fit: contain;" >
-                <img src="{{item.image}}" style="object-fit: contain;" height="150px" width="100%" alt="" >
-                <a href="/posts/{{item.id}}">open</a>
-            </div>
+                <a href="/posts/{{item.id}}" class="panel">
+                    <img src="{{item.image}}">
+                    <span>Открыть</span>
+                </a>
         {%- endfor %}
     </div>
+    <div class="pag-nav">
+        {% if paggination.prev %}
+        <a href="?page={{paggination.prev}}"><</a>
+        {%- endif %}
+        <div>
+            {{paggination}}
+        </div>
+        <a href="?page={{paggination.next}}">></a>
+    </div>
+{%- endblock %}
+
+
+{% block style -%}
+    <style>
+        .post-main {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            width: 100%;
+            align-items: center
+        }
+
+        .pag-nav {
+            display: flex;
+            color: var(--text-color-regular);
+            justify-content: space-between;
+
+            width: 100%;
+            background-color: var(--panel-color);
+            padding: .5rem;
+            border-radius: .2rem;
+            a {
+                text-decoration: none; 
+                color: var(--text-color-regular);
+                
+
+                &:disabled{
+                    color: oklch(from var(--text-color-regular) .5 c h)
+                }
+            }
+        }
+    </style>
 {%- endblock %}

@@ -4,28 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    {%block style -%}
+    {%- endblock %}
 </head>
 <body >
-    <header>
-        <h1>Qavabooru</h1>
-    </header>
-    <nav>
+    <div class="wrapper">
+        <header>
+            <a href="/"><h1>> QAVABOORU <span>|</span></h1></a>
+        </header>
+        <nav>
+            <input type="search" name="qsearch" placeholder="Поиск" id="qsearch">
+        </nav>
+        
+        <content>
+            <aside>
+                {% block aside -%}
+            
+                {%- endblock %}
+            </aside>
 
-    </nav>
-    <div style="display: flex;">
-
-    <aside>
-        {% block aside -%}
-    
-        {%- endblock %}
-    </aside>
-
-    <main>
-        {% block main -%}
-    
-        {%- endblock %}
-    </main>
+            <main>
+                {% block main -%}
+            
+                {%- endblock %}
+            </main>
+        </content>
+        
     </div>
-
+    <!-- <footer>
+            Qawerz
+    </footer> -->
 </body>
 </html>
+
+

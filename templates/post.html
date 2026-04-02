@@ -7,5 +7,38 @@
     </ul>
 {%- endblock %}
 {% block main -%}
-    <img src={{post.image}}  width="450px"></img>
+    <div class="post-main">
+        <!-- <span>{{post.image}} -->
+
+        </span>
+        <img src="{{post.image}}"  width="450px"></img>
+
+        <div class="post-nav">
+            <a>< prev</a>
+            <div></div>
+            <a>next ></a>
+        </div>
+    </div>
+{%- endblock %}
+
+{% block style -%}
+    <style>
+        .post-main {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            width: 100%;
+            align-items: center
+        }
+
+        .post-nav {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-color-regular);
+
+            width: 100%;
+            background-color: var(--panel-color);
+            padding: .5rem;
+        }
+    </style>
 {%- endblock %}

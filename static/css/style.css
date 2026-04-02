@@ -1,0 +1,146 @@
+:root{
+    --main-color: #04b;
+    --bacground-color: oklch(from var(--main-color) calc(l / 7) calc(c / 5) h);
+    --panel-color:  oklch(from var(--main-color) calc(l / 3.5) calc(c / 100) h);
+    --text-color-regular: oklch(from var(--main-color) .9 0 0)
+}
+
+body{
+    justify-items: center;
+    background-color: var(--bacground-color);
+
+    font-family: "Fira Code";
+}
+
+
+#qsearch {
+    width: 100%;
+    background-color: var(--panel-color);
+    border: 0.3rem solid oklch(from var(--main-color) 0.3 c h);
+    border-radius: .5rem;
+    padding: .5rem;
+    color: var(--text-color-regular);
+    outline: none;
+
+    &:focus{
+        border: 0.3rem solid var(--main-color)
+    }
+}
+
+.panel {
+    background-color: var(--panel-color);
+    display: flex; 
+    flex-direction: column; 
+    
+    width: 260px; 
+    object-fit: contain;
+    border-radius: .5rem;
+    /* margin: 1rem; */
+    aspect-ratio: 53/51;
+
+    text-decoration: none;
+    
+    color: var(--text-color-regular);
+    font-weight: 700;
+    transition: background-color .1s ease-in;
+    transition: background-color .2s cubic-bezier(.4, 0, .5, 1);
+
+
+    &:hover{
+        background-color: oklch(from var(--panel-color) calc(l + .1) c h);
+        transition: background-color .2s cubic-bezier(.4, 0, .5, 1);
+    }
+
+    img {
+        object-fit: cover;
+        object-position: top;
+        border-radius: .5rem .5rem 0 0;
+        /* height: 180px; */
+        width: 100%;
+        aspect-ratio: 53/51;
+    }
+    
+    span {
+        padding: .5rem;
+    }
+
+}
+
+content {
+    display: flex;
+    
+}
+
+.wrapper {
+    /* margin: 32px; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-width: 1440px;
+    justify-items: center;
+}
+
+main {
+    width: 100%;
+}
+.grid-items {
+    padding: 1rem;
+    display: grid;
+    grid-auto-flow: dense;
+    /* width:100%; */
+    /* justify-content: normal; */
+    /* align-items: start; */
+    /* grid-auto-rows: 20px; */
+    grid-gap: 20px;
+    /* grid-template-columns: repeat(auto-fit, 260px); */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+aside {
+    color: var(--main-color);
+    a { 
+        text-decoration: none;
+        color: var(--main-color);
+    }
+    width: 300px;
+    
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 100%;
+    }
+    50% {
+        opacity: 0%;
+    }
+
+}
+header {
+    a {
+        text-decoration: none;
+
+    }
+    h1 {
+        color: var(--main-color);
+        
+
+        span {
+            width: 10px;
+            height: 100%;
+            background-color: var(--main-color);
+
+        
+
+            animation: blink 1s infinite ;
+        }
+
+    }
+}
+
+footer {
+    
+    bottom: 0%;
+    color: var(--text-color-regular);
+    /* border: 5px solid #fff; */
+    width: 100%;
+}
