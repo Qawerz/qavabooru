@@ -1,7 +1,7 @@
 :root{
-    --main-color: #04b;
+    --main-color: #c4ff00;
     --bacground-color: oklch(from var(--main-color) calc(l / 7) calc(c / 5) h);
-    --panel-color:  oklch(from var(--main-color) calc(l / 3.5) calc(c / 100) h);
+    --panel-color:  oklch(from var(--main-color) calc(l / 3) calc(c / 100) h);
     --text-color-regular: oklch(from var(--main-color) .9 0 0)
 }
 
